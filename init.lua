@@ -139,6 +139,9 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+--set diagnostic information to update during insert mode
+vim.diagnostic.config { update_in_insert = true }
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -548,8 +551,17 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+        --tsserver = {},
+
+        --javascript / typescript lsp + linter
+        ts_ls = {},
+        eslint = {},
+
+        --python lsp, linter, static type checker (in order)
+        pyright = {},
+        ruff = {},
+        mypy = {},
+
         cmake = {},
         lua_ls = {
           -- cmd = {...},
@@ -842,7 +854,7 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
